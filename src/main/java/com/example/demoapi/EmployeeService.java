@@ -1,18 +1,22 @@
-package com.example.demo.services;
+package com.example.demoapi;
 
-import com.example.demo.model.Employee;
-import com.example.demo.repository.IEmployeeRepository;
+import com.example.demoapi.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class EmployeeService {
 
     @Autowired
-    IEmployeeRepository employeeRepository;
+    EmployeeRepository employeeRepository;
 
     public void createANewEmployee(Employee employee){
         employeeRepository.save(employee);
     }
 
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
+    }
 }
