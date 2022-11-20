@@ -2,11 +2,14 @@ package demoapi;
 
 import demoapi.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@ResponseBody
 public class EmployeeController {
 
     @PostMapping("/init_db")
@@ -23,32 +26,45 @@ public class EmployeeController {
     EmployeeService employeeService;
 
     @GetMapping("/employee")
-    public List<Employee> getAllEmployee(){
-        return employeeService.getAllEmployees();
+    public ResponseEntity<String> getAllEmployee(){
+        try{
+            List<Employee> listOfemployees = employeeService.getAllEmployees();
+            return ResponseEntity.status(HttpStatus.OK).body(listOfemployees.toString());
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Exception thrown: " + e.getMessage());
+        }
     }
 
     @GetMapping("/employee/{name}")
-    public List<Employee> getEmployeeByName(@PathVariable String name) throws Exception {
-        List<Employee> listOfemployees = employeeService.getEmployeeByName(name);
-        if (listOfemployees.isEmpty()){
-            throw new Exception("Employee with name as '" + name + "' not found.");
-        }else{
-            return listOfemployees;
+    public ResponseEntity<String> getEmployeeByName(@PathVariable String name) throws Exception {
+        try {
+            List<Employee> listOfemployees = employeeService.getEmployeeByName(name);
+            return ResponseEntity.status(HttpStatus.OK).body(listOfemployees.toString());
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Exception thrown: " + e.getMessage());
         }
     }
 
     @PostMapping("/employee")
-    public void createNewEmployee(@RequestBody Employee employee){
-        employeeService.createANewEmployee(employee);
+    public ResponseEntity<String> createNewEmployee(@RequestBody Employee employee){
+        try{
+            Employee emp = employeeService.createANewEmployee(employee);
+            return ResponseEntity.status(HttpStatus.CREATED).body(emp.toString());
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Exception thrown: " + e.getMessage());
+        }
     }
 
     @PutMapping("/employee")
-    public void editEmployee(@RequestBody Employee employee) throws Exception {
-        employeeService.updateExistingEmployee(employee);
-
+    public ResponseEntity<String> editEmployee(@RequestBody Employee employee) throws Exception {
+        try{
+            employeeService.updateExistingEmployee(employee);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Employee Updated");
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Employee not found.");
+        }
     }
 
-    //Delete
     @DeleteMapping("/employee/{id}")
     public void deleteEmployee(@PathVariable Integer id){
         employeeService.deleteEmployeeById(id);
