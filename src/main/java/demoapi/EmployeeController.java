@@ -42,9 +42,9 @@ public class EmployeeController {
         employeeService.createANewEmployee(employee);
     }
 
-    // Edit
-    @PutMapping
-    public void editEmployee(){
+    @PutMapping("/employee")
+    public void editEmployee(@RequestBody Employee employee) throws Exception {
+        employeeService.updateExistingEmployee(employee);
 
     }
 

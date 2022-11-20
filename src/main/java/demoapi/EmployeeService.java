@@ -27,4 +27,14 @@ public class EmployeeService {
     public void deleteEmployeeById(Integer id) {
         employeeRepository.deleteById(id);
     }
+
+    public void updateExistingEmployee(Employee employee) throws Exception {
+
+        if (employeeRepository.existsById(employee.getId())){
+            employeeRepository.save(employee);
+        }else{
+            throw new Exception("Employee ID not found");
+        }
+
+    }
 }
