@@ -24,7 +24,20 @@ public class EmployeeService {
         return employeeRepository.findByName(name);
     }
 
-    public void deleteEmployeeById(Integer id) {
-        employeeRepository.deleteById(id);
+    public void deleteEmployeeById(Integer id) throws Exception {
+        if (employeeRepository.existsById(id)){
+            employeeRepository.deleteById(id);
+        }else{
+            throw new Exception ("Employee does not exist. Can not delete");
+        }
+
+    }
+
+    public void editEmployee(Employee employee) throws Exception {
+        if (employeeRepository.existsById(employee.getId())){
+            employeeRepository.save(employee);
+        }else{
+            throw new Exception ("Employee does not exist. Can not edit");
+        }
     }
 }

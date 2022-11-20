@@ -2,12 +2,12 @@ package demoapi;
 
 import demoapi.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-/*
-akash
- */
+
 @RestController
 public class EmployeeController {
 
@@ -44,15 +44,23 @@ public class EmployeeController {
         employeeService.createANewEmployee(employee);
     }
 
-    // Edit
-    @PutMapping
-    public void editEmployee(){
-
+    @PutMapping("/employee")
+    public ResponseEntity<String> editEmployee(@RequestBody Employee employee) {
+        try{
+            employeeService.editEmployee(employee);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Employee Edited: " + employee);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
-    //Delete
     @DeleteMapping("/employee/{id}")
-    public void deleteEmployee(@PathVariable Integer id){
-        employeeService.deleteEmployeeById(id);
+    public ResponseEntity<String> deleteEmployee(@PathVariable Integer id){
+        try{
+            employeeService.deleteEmployeeById(id);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Employee deleted with id as: "+ id);
+        }catch(Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 }
