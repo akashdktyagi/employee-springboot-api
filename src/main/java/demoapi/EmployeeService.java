@@ -15,9 +15,6 @@ public class EmployeeService {
     RestTemplate restTemplate;
     EmployeeRepository employeeRepository;
 
-    @Value("${petapi.url}")
-    private String petApiUrl;
-
     @Autowired
     public EmployeeService(RestTemplate restTemplate, EmployeeRepository employeeRepository) {
         this.restTemplate = restTemplate;
@@ -53,7 +50,6 @@ public class EmployeeService {
     }
 
     public String getMyPetWithStatusAs(String status){
-        RestTemplate restTemplate = new RestTemplateBuilder().rootUri(petApiUrl).build();
         ResponseEntity<Object> responseEntity = restTemplate.getForEntity("/v2/pet/findByStatus?status="+status,Object.class);
         return String.valueOf(responseEntity.getBody());
     }
