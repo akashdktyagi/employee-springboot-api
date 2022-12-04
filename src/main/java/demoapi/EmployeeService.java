@@ -2,18 +2,25 @@ package demoapi;
 
 import demoapi.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
 @Service
 public class EmployeeService {
-
-    @Autowired
     EmployeeRepository employeeRepository;
 
-    public void createANewEmployee(Employee employee){
-        employeeRepository.save(employee);
+    @Autowired
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
+    }
+
+    public Employee createANewEmployee(Employee employee){
+        return employeeRepository.save(employee);
     }
 
     public List<Employee> getAllEmployees() {
@@ -30,7 +37,6 @@ public class EmployeeService {
         }else{
             throw new Exception ("Employee does not exist. Can not delete");
         }
-
     }
 
     public void editEmployee(Employee employee) throws Exception {
@@ -40,4 +46,5 @@ public class EmployeeService {
             throw new Exception ("Employee does not exist. Can not edit");
         }
     }
+
 }

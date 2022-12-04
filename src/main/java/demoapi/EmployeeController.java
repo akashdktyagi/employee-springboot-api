@@ -24,6 +24,9 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
+    @Autowired
+    EmployeeServiceRestTemplate employeeServiceRestTemplate;
+
     @GetMapping("/employee")
     public List<Employee> getAllEmployee(){
         return employeeService.getAllEmployees();
@@ -62,5 +65,10 @@ public class EmployeeController {
         }catch(Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
+    }
+
+    @GetMapping("/pet/{status}")
+    public String getMyPet(@PathVariable String status){
+        return employeeServiceRestTemplate.getMyPetWithStatusAs(status);
     }
 }

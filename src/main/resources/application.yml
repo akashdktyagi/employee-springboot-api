@@ -1,6 +1,9 @@
 server:
   port: '9000'
 
+petapi:
+  url: "https://petstore.swagger.io"
+
 spring:
   h2:
     console.enabled: true
