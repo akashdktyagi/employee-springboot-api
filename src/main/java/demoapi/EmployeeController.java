@@ -24,6 +24,9 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
+    @Autowired
+    EmployeeServiceRestTemplate employeeServiceRestTemplate;
+
     @GetMapping("/employee")
     public List<Employee> getAllEmployee(){
         return employeeService.getAllEmployees();
@@ -66,6 +69,6 @@ public class EmployeeController {
 
     @GetMapping("/pet/{status}")
     public String getMyPet(@PathVariable String status){
-        return employeeService.getMyPetWithStatusAs(status);
+        return employeeServiceRestTemplate.getMyPetWithStatusAs(status);
     }
 }

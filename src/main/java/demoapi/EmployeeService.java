@@ -12,17 +12,15 @@ import java.util.List;
 
 @Service
 public class EmployeeService {
-    RestTemplate restTemplate;
     EmployeeRepository employeeRepository;
 
     @Autowired
-    public EmployeeService(RestTemplate restTemplate, EmployeeRepository employeeRepository) {
-        this.restTemplate = restTemplate;
+    public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
 
-    public void createANewEmployee(Employee employee){
-        employeeRepository.save(employee);
+    public Employee createANewEmployee(Employee employee){
+        return employeeRepository.save(employee);
     }
 
     public List<Employee> getAllEmployees() {
@@ -49,8 +47,4 @@ public class EmployeeService {
         }
     }
 
-    public String getMyPetWithStatusAs(String status){
-        ResponseEntity<Object> responseEntity = restTemplate.getForEntity("/v2/pet/findByStatus?status="+status,Object.class);
-        return String.valueOf(responseEntity.getBody());
-    }
 }
