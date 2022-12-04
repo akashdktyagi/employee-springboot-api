@@ -15,3 +15,21 @@ This is a sample reference api using Spring boot api
 * Builder Pattern/Pojo
 
 
+
+
+<properties>
+  <sonar.organization>akashdktyagi-github</sonar.organization>
+  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+</properties>
+
+mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=akashdktyagi_about-me
+
+mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=akashdktyagi_about-me
+
+mvn verify sonar:sonar
+
+<properties>
+  <sonar.organization>akashdktyagi-github</sonar.organization>
+  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+</properties>
+
