@@ -63,4 +63,9 @@ public class EmployeeController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
+
+    @GetMapping("/pet/{status}")
+    public String getMyPet(@PathVariable String status){
+        return employeeService.getMyPetWithStatusAs(status);
+    }
 }
