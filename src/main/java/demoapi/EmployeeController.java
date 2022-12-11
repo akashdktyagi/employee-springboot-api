@@ -13,9 +13,9 @@ public class EmployeeController {
 
     @PostMapping("/init_db")
     public void initDB(){
-        Employee employee = Employee.builder().withName("Akash").build();
-        Employee employee1 = Employee.builder().withName("Amit").build();
-        Employee employee2 = Employee.builder().withName("Sumit").build();
+        Employee employee = Employee.builder().withName("Akash").withAge(23).build();
+        Employee employee1 = Employee.builder().withName("Amit").withAge(23).build();
+        Employee employee2 = Employee.builder().withName("Sumit").withAge(23).build();
         createNewEmployee(employee);
         createNewEmployee(employee1);
         createNewEmployee(employee2);
