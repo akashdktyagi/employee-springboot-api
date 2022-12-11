@@ -4,19 +4,19 @@ server:
 petapi:
   url: "https://petstore.swagger.io"
 
-spring:
-  h2:
-    console.enabled: true
-    console.path: /h2-console
-    console.settings.trace: false
-    console.settings.web-allow-others: false
-  datasource:
-    url: jdbc:h2:mem:mydb # jdbc:h2:file:/data/demo if persistence is required for file
-    username: root
-    password: demo
-    driverClassName: org.h2.Driver
-  jpa:
-    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+#spring:
+#  h2:
+#    console.enabled: true
+#    console.path: /h2-console
+#    console.settings.trace: false
+#    console.settings.web-allow-others: false
+#  datasource:
+#    url: jdbc:h2:mem:mydb # jdbc:h2:file:/data/demo if persistence is required for file
+#    username: root
+#    password: demo
+#    driverClassName: org.h2.Driver
+#  jpa:
+#    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
 
 springdoc:
   swagger-ui:
@@ -28,4 +28,21 @@ logging:
     org:
       springframework:
         web: TRACE
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/employee_db
+    username: root
+    password: root
+    initialization-mode: always
+    initialize: true
+    continue-on-error: true
+  jpa:
+    spring.jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+    spring.jpa.hibernate.show-sql: true
+    spring.jpa.hibernate.ddl-auto: update
+
+
+
+
 
