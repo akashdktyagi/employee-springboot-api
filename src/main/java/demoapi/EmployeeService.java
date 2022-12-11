@@ -31,17 +31,18 @@ public class EmployeeService {
         return employeeRepository.findByName(name);
     }
 
-    public void deleteEmployeeById(Integer id) throws Exception {
+    public String deleteEmployeeById(Integer id) throws Exception {
         if (employeeRepository.existsById(id)){
             employeeRepository.deleteById(id);
+            return "successfully deleted";
         }else{
             throw new Exception ("Employee does not exist. Can not delete");
         }
     }
 
-    public void editEmployee(Employee employee) throws Exception {
+    public Employee editEmployee(Employee employee) throws Exception {
         if (employeeRepository.existsById(employee.getId())){
-            employeeRepository.save(employee);
+            return employeeRepository.save(employee);
         }else{
             throw new Exception ("Employee does not exist. Can not edit");
         }
