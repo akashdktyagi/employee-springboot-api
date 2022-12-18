@@ -32,6 +32,11 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
+    @GetMapping("/justAnotherEndPoint")
+    public String justAnotherEndPoint(){
+        return "Hello";
+    }
+
     @GetMapping("/employee/{name}")
     public List<Employee> getEmployeeByName(@PathVariable String name) throws Exception {
         List<Employee> listOfemployees = employeeService.getEmployeeByName(name);

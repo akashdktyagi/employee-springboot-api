@@ -46,12 +46,13 @@ Steps to take:
 
 1. Add Docker file
 2. Add Docker ignore file
-3. run maven command
+3. run maven command: mvn clean install
 4. Run Docker Login : docker login
 5. Run Docker build :  docker build -t 333743/employee-service-api:latest .
 6. Run Docker images to see the image: docker images
-7. Run Docker container locally: docker run -p8088:9000 333743/employee-service-api:1
+7. Run Docker container locally: docker run -p8099:9000 333743/employee-service-api:v1
 6. Run Docker Push: docker push 333743/employee-service-api:1
+7. Test this API on your local or Docker Playground: https://labs.play-with-docker.com/
 
 #### Usefull Docker Commands:
 1. Get all docker images: docker images -a
