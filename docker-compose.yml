@@ -1,5 +1,4 @@
 # https://github.com/khezen/compose-postgres/blob/master/docker-compose.yml
-
 version: '3.8'
 services:
   db:
@@ -21,6 +20,4 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
       - "5050:80"
-
-
 

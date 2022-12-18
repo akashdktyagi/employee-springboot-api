@@ -13,6 +13,7 @@ This is a sample reference api using Spring boot api
 * yml config file
 * Lombok lib
 * Builder Pattern/Pojo
+<<<<<<< HEAD
 
 
 ### Create table in postgresDB
@@ -27,6 +28,19 @@ phone VARCHAR ( 255 ) ,
 salary VARCHAR ( 255 )
 
 );
+=======
+  
+  CREATE TABLE employee ( id serial PRIMARY KEY, age VARCHAR ( 50 ) ,
+  department VARCHAR ( 50 ) , 
+  designation VARCHAR ( 255 ) ,
+  email VARCHAR ( 255 ) ,
+  name VARCHAR ( 255 ) , 
+  phone VARCHAR ( 255 ) ,
+  salary VARCHAR ( 255 )
+
+);
+
+>>>>>>> d1d5529b495e6abebfdac2f001543f5976202920
 
 <properties>
   <sonar.organization>akashdktyagi-github</sonar.organization>
