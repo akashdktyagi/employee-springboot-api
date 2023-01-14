@@ -52,14 +52,20 @@ public class EmployeeController {
         employeeService.createANewEmployee(employee);
     }
 
+//    @PutMapping("/employee")
+//    public ResponseEntity<String> editEmployee(@RequestBody Employee employee) {
+//        try{
+//            employeeService.editEmployee(employee);
+//            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Employee Edited: " + employee);
+//        }catch(Exception e){
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+//        }
+//    }
     @PutMapping("/employee")
-    public ResponseEntity<String> editEmployee(@RequestBody Employee employee) {
-        try{
-            employeeService.editEmployee(employee);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Employee Edited: " + employee);
-        }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
+    public ResponseEntity<String> editEmployee(@RequestBody Employee employee) throws Exception {
+        employeeService.editEmployee(employee);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("Employee Edited: " + employee);
+
     }
 
     @DeleteMapping("/employee/{id}")

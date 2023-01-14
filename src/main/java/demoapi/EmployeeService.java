@@ -40,11 +40,19 @@ public class EmployeeService {
         }
     }
 
+//    public Employee editEmployee(Employee employee) throws Exception {
+//        if (employeeRepository.existsById(employee.getId())){
+//            return employeeRepository.save(employee);
+//        }else{
+//            throw new Exception ("Employee does not exist. Can not edit");
+//        }
+//    }
+
     public Employee editEmployee(Employee employee) throws Exception {
         if (employeeRepository.existsById(employee.getId())){
             return employeeRepository.save(employee);
         }else{
-            throw new Exception ("Employee does not exist. Can not edit");
+            throw new EmployeeNotFoundException ("Employee does not exist with id as : " + employee.getId() + " . Can not edit");
         }
     }
 
