@@ -31,20 +31,20 @@ public class EmployeeService {
         return employeeRepository.findByName(name);
     }
 
-    public String deleteEmployeeById(Integer id) throws Exception {
+    public String deleteEmployeeById(Integer id) throws EmployeeDoesNotExistException {
         if (employeeRepository.existsById(id)){
             employeeRepository.deleteById(id);
             return "successfully deleted";
         }else{
-            throw new Exception ("Employee does not exist. Can not delete");
+            throw new EmployeeDoesNotExistException ("Can not delete the employee with id as : " + id);
         }
     }
 
-    public Employee editEmployee(Employee employee) throws Exception {
+    public Employee editEmployee(Employee employee) throws EmployeeDoesNotExistException {
         if (employeeRepository.existsById(employee.getId())){
             return employeeRepository.save(employee);
         }else{
-            throw new Exception ("Employee does not exist. Can not edit");
+            throw new EmployeeDoesNotExistException ("Can not edit the employee with id as : " + employee.getId());
         }
     }
 

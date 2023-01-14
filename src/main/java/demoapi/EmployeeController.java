@@ -53,24 +53,16 @@ public class EmployeeController {
     }
 
     @PutMapping("/employee")
-    public ResponseEntity<String> editEmployee(@RequestBody Employee employee) {
-        try{
-            employeeService.editEmployee(employee);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Employee Edited: " + employee);
-        }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
+    public ResponseEntity<String> editEmployee(@RequestBody Employee employee) throws EmployeeDoesNotExistException {
+        employeeService.editEmployee(employee);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("Employee Edited: " + employee);
     }
 
     @DeleteMapping("/employee/{id}")
-    public ResponseEntity<String> deleteEmployee(@PathVariable Integer id){
-        try{
-            employeeService.deleteEmployeeById(id);
-            return ResponseEntity.status(HttpStatus.ACCEPTED).body("Employee deleted with id as: "+ id);
-        }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        }
-    }
+    public ResponseEntity<String> deleteEmployee(@PathVariable Integer id) throws EmployeeDoesNotExistException{
+        employeeService.deleteEmployeeById(id);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body("Employee deleted with id as: "+ id);
+}
 
     @GetMapping("/pet/{status}")
     public String getMyPet(@PathVariable String status){
