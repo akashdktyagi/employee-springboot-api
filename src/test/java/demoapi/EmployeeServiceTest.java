@@ -2,19 +2,14 @@ package demoapi;
 
 import demoapi.model.Employee;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.util.Arrays;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
 
@@ -71,7 +66,7 @@ class EmployeeServiceTest {
     @Test
     void deleteEmployeeById_empDoesNotExist() throws Exception {
         Mockito.when(employeeRepository.existsById(1)).thenReturn(false);
-        Assertions.assertThatThrownBy(()->employeeService.deleteEmployeeById(1)).isInstanceOf(Exception.class).hasMessage("Employee does not exist. Can not delete");
+        Assertions.assertThatThrownBy(()->employeeService.deleteEmployeeById(1)).isInstanceOf(Exception.class).hasMessage("Can not delete the employee with id as : 1");
     }
 
     @Test

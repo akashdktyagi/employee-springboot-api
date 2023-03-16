@@ -9,13 +9,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+//@CrossOrigin("*")
+@CrossOrigin(origins = "http://localhost:3000")
 public class EmployeeController {
 
     @PostMapping("/init_db")
     public void initDB(){
-        Employee employee = Employee.builder().withName("Akash").withAge(23).build();
-        Employee employee1 = Employee.builder().withName("Amit").withAge(23).build();
-        Employee employee2 = Employee.builder().withName("Sumit").withAge(23).build();
+        Employee employee = Employee.builder().withName("Akash").withAge(23).withAge(37).withEmail("a@a.com").withPhone("12345").withDepartment("HR").withSalary("35345").withDesignation("Director").build();
+        Employee employee1 = Employee.builder().withName("Amit").withAge(23).withEmail("b@a.com").withPhone("34546").withDepartment("GK").withSalary("456466").withDesignation("Manager").build();
+        Employee employee2 = Employee.builder().withName("Sumit").withAge(23).withEmail("c@a.com").withPhone("45656").withDepartment("BV").withSalary("65546").withDesignation("Director").build();
         createNewEmployee(employee);
         createNewEmployee(employee1);
         createNewEmployee(employee2);
